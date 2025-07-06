@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function StartMatch({ setMatch }) {
+export default function StartMatch({ setMatch, setLoading }) {
   const [formData, setFormData] = useState({
     teamA: "",
     teamB: "",
@@ -9,16 +9,28 @@ export default function StartMatch({ setMatch }) {
   });
 
   const handleStart = async () => {
-    const res = await fetch(
-      "https://cricket-score-1.onrender.com/matches/start",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+    try {
+      const res = await fetch(
+        "https://cricket-score-1.onrender.com/matches/start",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!res.ok) {
+        const text = await res.text(); // fallback if not JSON
+        throw new Error(`Server error: ${res.status}\n${text}`);
       }
-    );
-    const data = await res.json();
-    setMatch(data);
+
+      const data = await res.json();
+      setMatch(data);
+      setLoading(true);
+    } catch (error) {
+      console.error("Failed to start match:", error);
+      alert("Failed to start match. Check backend and CORS settings.");
+    }
   };
 
   return (
