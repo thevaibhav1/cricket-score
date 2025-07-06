@@ -13,11 +13,14 @@ export default function LiveMatch({ match, commentary }) {
 
   const handleAddBall = async () => {
     if (!match) return;
-    await fetch(`http://localhost:4000/matches/${match.matchId}/commentary`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(ball),
-    });
+    await fetch(
+      `https://cricket-score-backend.onrender.com/matches/${match.matchId}/commentary`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(ball),
+      }
+    );
     setBall({
       over: "",
       ball: "",

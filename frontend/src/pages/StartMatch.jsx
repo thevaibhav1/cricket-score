@@ -9,13 +9,16 @@ export default function StartMatch({ setMatch }) {
   });
 
   const handleStart = async () => {
-    const res = await fetch("http://localhost:4000/matches/start", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    const res = await fetch(
+      "https://cricket-score-backend.onrender.com/matches/start",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }
+    );
     const data = await res.json();
-    setMatch(data); // b
+    setMatch(data);
   };
 
   return (
