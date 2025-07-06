@@ -7,7 +7,7 @@ app.use(cors()); //
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://cricket-score-r9r8.vercel.app/",
+    origin: "https://cricket-score-r9r8.vercel.app",
     methods: ["GET", "POST"],
   },
 });
