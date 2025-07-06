@@ -2,13 +2,25 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
+
 const app = express();
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "https://cricket-score-r9r8.vercel.app", // ✅ match frontend
+    methods: ["GET", "POST"],
+  })
+);
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Backend is running");
+});
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://cricket-score-r9r8.vercel.app",
+    origin: "https://cricket-score-r9r8.vercel.app", // ✅ for socket.io
     methods: ["GET", "POST"],
   },
 });

@@ -20,7 +20,7 @@ export default function StartMatch({ setMatch, setLoading }) {
       );
 
       if (!res.ok) {
-        const text = await res.text(); // fallback if not JSON
+        const text = await res.text();
         throw new Error(`Server error: ${res.status}\n${text}`);
       }
 
