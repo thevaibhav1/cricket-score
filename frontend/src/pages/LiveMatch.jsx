@@ -14,7 +14,7 @@ export default function LiveMatch({ match, commentary }) {
   const handleAddBall = async () => {
     if (!match) return;
     await fetch(
-      `https://cricket-score-backend.onrender.com/matches/${match.matchId}/commentary`,
+      `https://cricket-score-1.onrender.com/matches/${match.matchId}/commentary`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

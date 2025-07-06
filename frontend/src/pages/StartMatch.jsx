@@ -10,7 +10,7 @@ export default function StartMatch({ setMatch }) {
 
   const handleStart = async () => {
     const res = await fetch(
-      "https://cricket-score-backend.onrender.com/matches/start",
+      "https://cricket-score-1.onrender.com/matches/start",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
