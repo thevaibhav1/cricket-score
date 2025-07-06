@@ -29,7 +29,6 @@ export default function StartMatch({ setMatch, setLoading }) {
       setLoading(true);
     } catch (error) {
       console.error("Failed to start match:", error);
-      alert("Failed to start match. Check backend and CORS settings.");
     }
   };
 
